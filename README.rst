@@ -20,3 +20,5 @@ Usage Example
 >>> tp.add_task_to_queue(sum, [1, 2])
 >>> tasks = range(0, 1)
 >>> results = tp.get_results(tasks)
+>>> results
+[3]

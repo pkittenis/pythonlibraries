@@ -35,7 +35,7 @@ class ThreadPoolTest(unittest.TestCase):
         tp = ThreadPool(debug = True)
         tp.add_task_to_queue(echo_exception)
         tasks = range(0, 1)
-        results = tp.get_results(tasks)
+        self.assertEqual(tp.get_results(tasks), [None], msg = "Got no output from thread")
 
     def test_threadpool_output(self):
         tp = ThreadPool(debug = True)
@@ -44,6 +44,9 @@ class ThreadPoolTest(unittest.TestCase):
         tasks = range(0, 2)
         results = tp.get_results(tasks)
         expected_results = [4, 9]
+        # Order of returned output is non-deterministic because of being running in threads
+        expected_results.sort()
+        results.sort()
         self.assertEqual(results, expected_results, msg = "Unexpected output from threadpool, got %s, expected %s" %
                          (results, expected_results))
 
