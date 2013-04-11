@@ -4,7 +4,7 @@
 
 import unittest
 import time
-from threadpool import ThreadPool
+from ..threadpool import ThreadPool
 
 def echo_exception():
     print("Doing some stuff")
